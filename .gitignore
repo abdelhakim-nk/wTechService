@@ -1,10 +1,9 @@
 # Screenshots / maquettes
-*.png
-*.JPG
 Capture*
 IMG_*
 
-# Allow favicon PNGs
+# Images - ignore PNGs sauf favicons
+*.png
 !assets/img/favicon-32.png
 !assets/img/apple-touch-icon.png
 
