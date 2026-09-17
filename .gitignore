@@ -4,6 +4,10 @@
 Capture*
 IMG_*
 
+# Allow favicon PNGs
+!assets/img/favicon-32.png
+!assets/img/apple-touch-icon.png
+
 # OS
 .DS_Store
 Thumbs.db
