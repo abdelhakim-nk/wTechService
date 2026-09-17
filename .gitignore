@@ -1,0 +1,14 @@
+# Screenshots / maquettes
+*.png
+*.JPG
+Capture*
+IMG_*
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /mentions-legales.html
+Disallow: /politique-confidentialite.html
+Disallow: /404.html
+
+Sitemap: [URL_SITE]/sitemap.xml
