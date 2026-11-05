@@ -663,7 +663,10 @@ p + p { margin-top: var(--space-md); }
   .hero__bg::after {
     display: none;
   }
-  .hero__content {
+  .hero__bg {
+    height: 170px; /* image réduite : les boutons d'appel restent visibles sans scroller */
+  }
+  .hero__inner {
     padding-block: var(--space-lg) var(--space-2xl);
   }
   .hero__title {
@@ -671,21 +674,118 @@ p + p { margin-top: var(--space-md); }
   }
 }
 
-.hero__content {
+/* Grille hero : texte + CTA à gauche, mini-formulaire à droite (desktop) */
+.hero__inner {
   position: relative;
   z-index: 1;
-  max-width: 580px;
+  display: grid;
+  gap: var(--space-xl);
+  align-items: center;
   padding-block: var(--space-3xl);
 }
 
+@media (min-width: 1024px) {
+  .hero__inner {
+    grid-template-columns: minmax(0, 1fr) 400px;
+    gap: var(--space-3xl);
+    /* + 48px : compense le chevauchement des cartes services (margin-top: -48px) */
+    padding-block: var(--space-3xl) calc(var(--space-3xl) + 48px);
+  }
+}
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  max-width: 580px;
+}
+
+.hero__hint {
+  margin-top: var(--space-sm);
+  font-size: var(--fs-sm);
+  color: var(--text);
+}
+
 @media (max-width: 767px) {
+  /* Sur mobile, les CTA passent avant le paragraphe de description */
   .hero__buttons {
+    order: 1;
     flex-direction: column;
+    margin-bottom: var(--space-sm);
+  }
+  .hero__hint {
+    order: 2;
+    margin-top: 0;
+    margin-bottom: var(--space-lg);
+  }
+  .hero__desc {
+    order: 3;
+    margin-bottom: 0;
   }
   .hero__buttons .btn {
     width: 100%;
     justify-content: center;
   }
+}
+
+/* Boutons hero */
+.btn--lg {
+  padding: 1rem 1.75rem;
+  font-size: var(--fs-base);
+  font-weight: 700;
+}
+
+.btn--whatsapp {
+  background: var(--white);
+  color: var(--navy);
+  border: 2px solid #25D366;
+}
+.btn--whatsapp svg {
+  color: #1DA851;
+}
+.btn--whatsapp:hover,
+.btn--whatsapp:focus-visible {
+  background: #F0FBF4;
+  box-shadow: var(--shadow-md);
+}
+
+/* Mini-formulaire du hero */
+.form--hero {
+  padding: var(--space-xl);
+}
+.form--hero .form__subtitle {
+  margin-bottom: var(--space-lg);
+}
+.form--hero .form__group {
+  margin-bottom: var(--space-sm);
+}
+.form--hero .form__input,
+.form--hero .form__select {
+  padding: 0.8rem 1rem;
+}
+@media (min-width: 480px) {
+  /* Code postal plus court, téléphone plus large */
+  .form--hero .form__row--2 { grid-template-columns: 2fr 3fr; }
+}
+.form__submit {
+  width: 100%;
+  margin-top: var(--space-sm);
+  background: var(--white);
+  color: var(--primary);
+  border: 2px solid var(--white);
+  font-weight: 800;
+  font-size: var(--fs-base);
+}
+.form__submit:hover,
+.form__submit:focus-visible {
+  background: var(--bg-light);
+}
+.form--hero .form__note {
+  margin-top: var(--space-sm);
+}
+
+/* Après envoi : on masque les champs, on garde le message de succès */
+.form--sent > *:not(.form__success) {
+  display: none;
 }
 
 .hero__title {
@@ -1294,6 +1394,14 @@ p + p { margin-top: var(--space-md); }
     background: var(--bg-light);
     color: var(--navy);
     border: 1px solid var(--border);
+  }
+  .mobile-bar__btn--whatsapp {
+    background: var(--white);
+    color: var(--navy);
+    border: 2px solid #25D366;
+  }
+  .mobile-bar__btn--whatsapp svg {
+    color: #1DA851;
   }
 
   body {

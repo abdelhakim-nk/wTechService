@@ -270,31 +270,84 @@
       </picture>
     </div>
 
-    <div class="container hero__content">
-      <p class="eyebrow">Dépannage &bull; Installation &bull; Maintenance</p>
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <p class="eyebrow">Dépannage &bull; Installation &bull; Maintenance</p>
 
-      <h1 class="hero__title">
-        Votre spécialiste en<br>
-        <span class="text-primary">électricité &amp; électroménager</span>
-      </h1>
+        <h1 class="hero__title">
+          Votre spécialiste en<br>
+          <span class="text-primary">électricité &amp; électroménager</span>
+        </h1>
 
-      <p class="hero__desc">
-        Un service de proximité pour le dépannage, l'installation
-        et la maintenance de vos appareils électroménagers
-        et de vos installations électriques.
-      </p>
+        <p class="hero__desc">
+          Un service de proximité pour le dépannage, l'installation
+          et la maintenance de vos appareils électroménagers
+          et de vos installations électriques.
+        </p>
 
-      <div class="hero__buttons">
-        <a href="contact.html" class="btn btn--primary">
-          <!-- Calendrier -->
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          Prendre rendez-vous
-        </a>
-        <a href="#services" class="btn btn--secondary">
-          Nos prestations
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="16" height="16"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-        </a>
+        <!-- CTA principaux : appel direct + WhatsApp -->
+        <div class="hero__buttons">
+          <a href="tel:[TELEPHONE]" class="btn btn--primary btn--lg">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Appeler maintenant
+          </a>
+          <a href="https://wa.me/[WHATSAPP]?text=Bonjour%2C%20j%27ai%20une%20panne%20sur%20mon%20appareil%20%3A%20" class="btn btn--whatsapp btn--lg" target="_blank" rel="noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            Écrire sur WhatsApp
+          </a>
+        </div>
+        <p class="hero__hint">Envoyez une photo de la panne sur WhatsApp, on vous répond rapidement.</p>
       </div>
+
+      <!-- Mini-formulaire de rappel (envoi via Web3Forms, géré par main.js) -->
+      <form action="https://api.web3forms.com/submit" method="POST" class="form form--hero js-contact-form" novalidate>
+        <p class="form__title">Être rappelé rapidement</p>
+        <p class="form__subtitle">4 informations, 30 secondes.</p>
+        <input type="hidden" name="access_key" value="[FORM_ACCESS_KEY]">
+        <input type="hidden" name="subject" value="Demande de rappel (page d'accueil) — Wtech Service">
+        <input type="hidden" name="from_name" value="Site Wtech Service">
+        <div class="form__honey"><input type="text" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true"></div>
+
+        <div class="form__group" data-required>
+          <label for="hero-appareil" class="form__label">Appareil concerné <span class="form__required">*</span></label>
+          <select id="hero-appareil" name="appareil" class="form__select" required>
+            <option value="">Choisissez...</option>
+            <option>Lave-linge</option>
+            <option>Lave-vaisselle</option>
+            <option>Réfrigérateur / congélateur</option>
+            <option>Four / plaque de cuisson</option>
+            <option>Sèche-linge</option>
+            <option>Autre appareil</option>
+            <option>Problème électrique</option>
+          </select>
+          <div class="form__error">Ce champ est requis.</div>
+        </div>
+
+        <div class="form__group" data-required>
+          <label for="hero-panne" class="form__label">Panne constatée <span class="form__required">*</span></label>
+          <input type="text" id="hero-panne" name="panne" class="form__input" required maxlength="200" placeholder="Ex : ne vidange plus, fait disjoncter…">
+          <div class="form__error">Ce champ est requis.</div>
+        </div>
+
+        <div class="form__row form__row--2">
+          <div class="form__group" data-required>
+            <label for="hero-cp" class="form__label">Code postal <span class="form__required">*</span></label>
+            <input type="text" id="hero-cp" name="code_postal" class="form__input" required inputmode="numeric" autocomplete="postal-code" maxlength="5" data-validate="cp" placeholder="75000">
+            <div class="form__error">Ce champ est requis.</div>
+          </div>
+          <div class="form__group" data-required>
+            <label for="hero-tel" class="form__label">Téléphone <span class="form__required">*</span></label>
+            <input type="tel" id="hero-tel" name="phone" class="form__input" required autocomplete="tel" placeholder="06 00 00 00 00">
+            <div class="form__error">Ce champ est requis.</div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn form__submit">Me faire rappeler</button>
+
+        <div class="form__success" role="status">Merci ! Votre demande est bien partie. Nous vous rappelons au plus vite.</div>
+
+        <p class="form__note">Vos données servent uniquement à traiter votre demande. <a href="politique-confidentialite.html">Politique de confidentialité</a>.</p>
+      </form>
     </div>
   </section>
 
@@ -718,9 +771,8 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
     Appeler
   </a>
-  <a href="contact.html" class="mobile-bar__btn mobile-bar__btn--quote">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-    Devis gratuit
+  <a href="https://wa.me/[WHATSAPP]?text=Bonjour%2C%20j%27ai%20une%20panne%20sur%20mon%20appareil%20%3A%20" class="mobile-bar__btn mobile-bar__btn--whatsapp" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> WhatsApp</a><a href="contact.html" class="mobile-bar__btn mobile-bar__btn--quote">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg> Devis
   </a>
 </div>
 

@@ -161,8 +161,8 @@
   /* --------------------------------------------------------------------
      7. FORMULAIRE DE CONTACT — validation + envoi AJAX
      -------------------------------------------------------------------- */
-  const form = document.querySelector('.js-contact-form');
-  if (form) {
+  // Plusieurs formulaires possibles par page (ex. accueil : mini-formulaire du hero)
+  document.querySelectorAll('.js-contact-form').forEach((form) => {
     const successMsg = form.querySelector('.form__success');
     const honeyField = form.querySelector('.form__honey input');
 
@@ -198,6 +198,12 @@
           if (!telRe.test(input.value.trim())) {
             hasError = true;
             if (error) error.textContent = 'Veuillez entrer un numéro de téléphone valide.';
+          }
+        } else if (input.dataset.validate === 'cp' && input.value.trim()) {
+          // Vérifier code postal (5 chiffres)
+          if (!/^\d{5}$/.test(input.value.trim())) {
+            hasError = true;
+            if (error) error.textContent = 'Veuillez entrer un code postal à 5 chiffres.';
           }
         } else if (!input.value.trim()) {
           hasError = true;
@@ -235,8 +241,13 @@
 
         if (response.ok) {
           form.reset();
-          form.style.display = 'none';
-          if (successMsg) successMsg.classList.add('form__success--visible');
+          // Masque les champs mais garde le message de succès (qui est dans le formulaire)
+          form.classList.add('form--sent');
+          if (successMsg) {
+            successMsg.classList.add('form__success--visible');
+            successMsg.setAttribute('tabindex', '-1');
+            successMsg.focus();
+          }
         } else {
           throw new Error('Erreur serveur');
         }
@@ -254,12 +265,13 @@
     form.querySelectorAll('.form__group[data-required]').forEach((group) => {
       const input = group.querySelector('input, select, textarea');
       if (input) {
-        input.addEventListener('input', () => {
+        // 'change' en plus de 'input' : nécessaire pour les <select> sur certains navigateurs
+        ['input', 'change'].forEach((evt) => input.addEventListener(evt, () => {
           group.classList.remove('form__group--error');
-        });
+        }));
       }
     });
-  }
+  });
 
   /* --------------------------------------------------------------------
      8. SMOOTH SCROLL pour les ancres (fallback)
